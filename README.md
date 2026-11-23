@@ -10,3 +10,15 @@ This tool adapts the standard single-chip Bitaxe benchmark script for the **12V 
 - **Dual ASIC & VRM Thermal Protection:** Monitors both `temp` and `temp2` (default `66 °C` cutoff) alongside `vrTemp` (default `82 °C` cutoff) so neither ASIC bank nor the VRM stage overheats during 10-minute steps.
 - **ASIC Error Ceiling & Valid Share Optimization:** Adds an `errorPercentage` threshold (`0.75%` in `efficiency` mode, `1.50%` in `hashrate` mode) with an early-abort trigger if errors spike past `2.5×` the limit, and ranks high-hashrate runs by **Effective Valid Hashrate** (`averageHashRate × (1 - errorPercentage / 100)`) to maximize valid shares per second.
 - **6-Chip Voltage Ceiling (`1300 mV`) & Single-Reboot Exit:** Lowers the maximum core voltage cap from `1400 mV` to `1300 mV` to prevent VRM overload, applies the winning profile for the selected mode (`efficiency` or `hashrate`) on completion or `Ctrl+C`, and removes a redundant double-reboot call on exit.
+
+---
+
+## Requirements & Installation
+
+- **Hardware:** Bitaxe Gamma Hex (6× BM1370) running ESP-Miner / AxeOS on the same local network, powered by an adequately rated 12V DC PSU.
+- **Software:** Python 3.7+ and the `requests` library.
+
+```bash
+git clone [https://github.com/metaprinter/Bitaxe-Gamma-Hex-Benchmark-Tool.git](https://github.com/metaprinter/Bitaxe-Gamma-Hex-Benchmark-Tool.git)
+cd Bitaxe-Gamma-Hex-Benchmark-Tool
+pip3 install -r requirements.txt
